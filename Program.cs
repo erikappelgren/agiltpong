@@ -9,6 +9,7 @@ namespace agiltpong
     static class Program
     {
         /// <summary>
+        /// test 123
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
