@@ -10,6 +10,7 @@ namespace agiltpong
     {
         /// <summary>
         /// test 123
+        /// Hejsan
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
