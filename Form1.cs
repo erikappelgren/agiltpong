@@ -12,6 +12,7 @@ namespace agiltpong
 {
     public partial class Form1 : Form
     {
+
         int bollx = 5;
         int bolly = 5;
         int EnemyScore = 0;
@@ -24,6 +25,17 @@ namespace agiltpong
             InitializeComponent();
         }
 
+        void keyisdown(object sender, KeyEventArgs e)
+        {
+            int x = platta.Location.X;
+            int y = platta.Location.Y;
+
+
+            if (e.KeyCode == Keys.Up) y -= 20;
+            if (e.KeyCode == Keys.Down) y += 20;
+
+            platta.Location = new Point(x, y);
+        }
         private void timerTick(object sender, EventArgs e)
         {
             Spelare.Text = "" + PlayerScore;
@@ -88,6 +100,11 @@ namespace agiltpong
                 pongtimer.Stop();
                 MessageBox.Show("You win this game");
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }
