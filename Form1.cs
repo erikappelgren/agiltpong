@@ -20,9 +20,20 @@ namespace agiltpong
         int speed = 5;
         bool goup;
         bool godown;
+
+        System.Timers.Timer t;
+        int h, m, s;
+        
         public Form1()
         {
             InitializeComponent();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            t = new System.Timers.Timer();
+            t.Interval = 10;//1s
+            t.Elapsed += OnTimeEvent;
+            t.Start();
         }
 
         void keyisdown(object sender, KeyEventArgs e)
@@ -36,6 +47,7 @@ namespace agiltpong
 
             platta.Location = new Point(x, y);
         }
+
         private void timerTick(object sender, EventArgs e)
         {
             Spelare.Text = "" + PlayerScore;
@@ -98,14 +110,29 @@ namespace agiltpong
             if (PlayerScore > 10)
             {
                 pongtimer.Stop();
+                t.Stop();
                 MessageBox.Show("You win this game");
             }
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
+            { 
+            Invoke(new Action(() =>
+                {
+                    s += 1;
+                    if (s == 60)
+                    {
+                        s = 0;
+                        m += 1;
+                    }
+                    if (m == 60)
+                    {
+                        m = 0;
+                        h += 1;
+                    }
+                    txtResult.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
 
+                }));
         }
     }
 }
