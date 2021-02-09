@@ -99,7 +99,6 @@ namespace agiltpong
             if (goup == true && platta.Top > 0)
             {
                 platta.Top -= 8;
-
             }
 
             if (godown == true && platta.Top < 455)
@@ -107,11 +106,17 @@ namespace agiltpong
                 platta.Top += 8;
             }
 
-            if (PlayerScore > 10)
+            if (PlayerScore == 10)
             {
                 pongtimer.Stop();
                 t.Stop();
                 MessageBox.Show("You win this game");
+            }
+            if (EnemyScore == 10)
+            {
+                pongtimer.Stop();
+                t.Stop();
+                MessageBox.Show("You lose this game");
             }
         }
 
