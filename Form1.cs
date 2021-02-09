@@ -12,19 +12,26 @@ namespace agiltpong
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
+            
+
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        void keyisdown(object sender, KeyEventArgs e)
         {
+            int x = pictureBox1.Location.X;
+            int y = pictureBox1.Location.Y;
 
+            
+             if (e.KeyCode == Keys.Up) y -= 7;
+             if (e.KeyCode == Keys.Down) y += 7;
+
+            pictureBox1.Location = new Point(x, y);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }
