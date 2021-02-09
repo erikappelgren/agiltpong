@@ -53,7 +53,6 @@ namespace agiltpong
             this.pictureBox1.Size = new System.Drawing.Size(59, 286);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -89,7 +88,6 @@ namespace agiltpong
             this.label1.Size = new System.Drawing.Size(24, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "00";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -124,14 +122,13 @@ namespace agiltpong
             this.label4.TabIndex = 10;
             this.label4.Text = "YOU WIN";
             this.label4.Visible = false;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Snow;
-            this.label5.Location = new System.Drawing.Point(664, 338);
+            this.label5.Location = new System.Drawing.Point(645, 338);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(468, 95);
             this.label5.TabIndex = 11;
