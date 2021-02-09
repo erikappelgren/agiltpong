@@ -17,12 +17,28 @@ namespace agiltpong
             InitializeComponent();
         }
 
+        bool game = false;
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                label3.Visible = false;
+                game = true;
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
