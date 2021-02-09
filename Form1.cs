@@ -12,6 +12,7 @@ namespace agiltpong
 {
     public partial class Form1 : Form
     {
+
         int bollx = 5;
         int bolly = 5;
         int EnemyScore = 0;
@@ -28,10 +29,34 @@ namespace agiltpong
                 game = true;
             }
         }
+
+        System.Timers.Timer t;
+        int h, m, s;
+        
         public Form1()
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            t = new System.Timers.Timer();
+            t.Interval = 10;//1s
+            t.Elapsed += OnTimeEvent;
+            t.Start();
+        }
+
+        void keyisdown(object sender, KeyEventArgs e)
+        {
+            int x = platta.Location.X;
+            int y = platta.Location.Y;
+
+
+            if (e.KeyCode == Keys.Up) y -= 20;
+            if (e.KeyCode == Keys.Down) y += 20;
+
+            platta.Location = new Point(x, y);
+        }
+
         private void timerTick(object sender, EventArgs e)
         {
             if (game == true)
@@ -93,15 +118,32 @@ namespace agiltpong
                     platta.Top += 8;
                 }
 
-                if (PlayerScore > 10)
-                {
-                    pongtimer.Stop();
-                    MessageBox.Show("You win this game");
-                }
-
+            if (PlayerScore > 10)
+            {
+                pongtimer.Stop();
+                t.Stop();
+                MessageBox.Show("You win this game");
             }
         }
 
-        
+        private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
+            { 
+            Invoke(new Action(() =>
+                {
+                    s += 1;
+                    if (s == 60)
+                    {
+                        s = 0;
+                        m += 1;
+                    }
+                    if (m == 60)
+                    {
+                        m = 0;
+                        h += 1;
+                    }
+                    txtResult.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
+
+                }));
+        }
     }
 }

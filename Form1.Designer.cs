@@ -17,7 +17,7 @@ namespace agiltpong
             if (disposing && (components != null))
             {
                 components.Dispose();
-            }
+            } 
             base.Dispose(disposing);
         }
 
@@ -37,6 +37,7 @@ namespace agiltpong
             this.platta = new System.Windows.Forms.PictureBox();
             this.platta2 = new System.Windows.Forms.PictureBox();
             this.startText = new System.Windows.Forms.Label();
+            this.txtResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.boll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta2)).BeginInit();
@@ -76,6 +77,8 @@ namespace agiltpong
             this.Motståndare.AutoSize = true;
             this.Motståndare.BackColor = System.Drawing.Color.Black;
             this.Motståndare.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.Motståndare.ForeColor = System.Drawing.Color.Red;
+            this.Motståndare.Location = new System.Drawing.Point(735, 9);
             this.Motståndare.ForeColor = System.Drawing.Color.Cyan;
             this.Motståndare.Location = new System.Drawing.Point(980, 11);
             this.Motståndare.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -115,6 +118,18 @@ namespace agiltpong
             this.startText.TabIndex = 5;
             this.startText.Text = "PRESS \'SPACE\' TO START";
             // 
+            // txtResult
+            // 
+            this.txtResult.Enabled = false;
+            this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResult.Location = new System.Drawing.Point(363, 12);
+            this.txtResult.Name = "txtResult";
+            this.txtResult.ReadOnly = true;
+            this.txtResult.Size = new System.Drawing.Size(166, 26);
+            this.txtResult.TabIndex = 7;
+            this.txtResult.Text = "00:00:00";
+            this.txtResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -127,10 +142,14 @@ namespace agiltpong
             this.Controls.Add(this.boll);
             this.Controls.Add(this.platta2);
             this.Controls.Add(this.platta);
+            this.Controls.Add(this.txtResult);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
             ((System.ComponentModel.ISupportInitialize)(this.boll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta2)).EndInit();
@@ -140,6 +159,7 @@ namespace agiltpong
         }
 
         #endregion
+        private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.Timer pongtimer;
         private System.Windows.Forms.Label Spelare;
         private System.Windows.Forms.PictureBox boll;
