@@ -38,6 +38,7 @@ namespace agiltpong
             this.platta2 = new System.Windows.Forms.PictureBox();
             this.startText = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
+            this.youWin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.boll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta2)).BeginInit();
@@ -66,7 +67,7 @@ namespace agiltpong
             // 
             this.boll.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.boll.Location = new System.Drawing.Point(579, 294);
-            this.boll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.boll.Margin = new System.Windows.Forms.Padding(4);
             this.boll.Name = "boll";
             this.boll.Size = new System.Drawing.Size(36, 32);
             this.boll.TabIndex = 2;
@@ -77,8 +78,6 @@ namespace agiltpong
             this.Motståndare.AutoSize = true;
             this.Motståndare.BackColor = System.Drawing.Color.Black;
             this.Motståndare.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Motståndare.ForeColor = System.Drawing.Color.Red;
-            this.Motståndare.Location = new System.Drawing.Point(735, 9);
             this.Motståndare.ForeColor = System.Drawing.Color.Cyan;
             this.Motståndare.Location = new System.Drawing.Point(980, 11);
             this.Motståndare.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -91,7 +90,7 @@ namespace agiltpong
             // 
             this.platta.BackColor = System.Drawing.Color.Cyan;
             this.platta.Location = new System.Drawing.Point(16, 283);
-            this.platta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.platta.Margin = new System.Windows.Forms.Padding(4);
             this.platta.Name = "platta";
             this.platta.Size = new System.Drawing.Size(35, 156);
             this.platta.TabIndex = 0;
@@ -101,7 +100,7 @@ namespace agiltpong
             // 
             this.platta2.BackColor = System.Drawing.Color.Red;
             this.platta2.Location = new System.Drawing.Point(1185, 283);
-            this.platta2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.platta2.Margin = new System.Windows.Forms.Padding(4);
             this.platta2.Name = "platta2";
             this.platta2.Size = new System.Drawing.Size(36, 156);
             this.platta2.TabIndex = 1;
@@ -125,10 +124,22 @@ namespace agiltpong
             this.txtResult.Location = new System.Drawing.Point(363, 12);
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
-            this.txtResult.Size = new System.Drawing.Size(166, 26);
+            this.txtResult.Size = new System.Drawing.Size(166, 30);
             this.txtResult.TabIndex = 7;
             this.txtResult.Text = "00:00:00";
             this.txtResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // youWin
+            // 
+            this.youWin.AutoSize = true;
+            this.youWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.youWin.ForeColor = System.Drawing.Color.FloralWhite;
+            this.youWin.Location = new System.Drawing.Point(419, 294);
+            this.youWin.Name = "youWin";
+            this.youWin.Size = new System.Drawing.Size(407, 95);
+            this.youWin.TabIndex = 8;
+            this.youWin.Text = "YOU WIN";
+            this.youWin.Visible = false;
             // 
             // Form1
             // 
@@ -136,6 +147,7 @@ namespace agiltpong
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1237, 706);
+            this.Controls.Add(this.youWin);
             this.Controls.Add(this.startText);
             this.Controls.Add(this.Motståndare);
             this.Controls.Add(this.Spelare);
@@ -143,13 +155,12 @@ namespace agiltpong
             this.Controls.Add(this.platta2);
             this.Controls.Add(this.platta);
             this.Controls.Add(this.txtResult);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.boll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platta2)).EndInit();
@@ -167,6 +178,7 @@ namespace agiltpong
         private System.Windows.Forms.PictureBox platta;
         private System.Windows.Forms.PictureBox platta2;
         private System.Windows.Forms.Label startText;
+        private System.Windows.Forms.Label youWin;
     }
 }
 

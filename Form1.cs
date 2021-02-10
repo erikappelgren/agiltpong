@@ -118,14 +118,15 @@ namespace agiltpong
                     platta.Top += 8;
                 }
 
-            if (PlayerScore > 10)
-            {
-                pongtimer.Stop();
-                t.Stop();
-                MessageBox.Show("You win this game");
+                if (PlayerScore > 10)
+                {
+                    pongtimer.Stop();
+                    t.Stop();
+                    youWin.Visible = true;
+                    //MessageBox.Show("You win this game");
+                }
             }
         }
-
         private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
             { 
             Invoke(new Action(() =>
