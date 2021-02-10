@@ -20,6 +20,15 @@ namespace agiltpong
         int speed = 5;
         bool goup;
         bool godown;
+        bool game = false;
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                startText.Visible = false;
+                game = true;
+            }
+        }
 
         System.Timers.Timer t;
         int h, m, s;
@@ -50,67 +59,72 @@ namespace agiltpong
 
         private void timerTick(object sender, EventArgs e)
         {
-            Spelare.Text = "" + PlayerScore;
-            Motståndare.Text = "" + EnemyScore;
-
-            boll.Top -= bolly;
-            boll.Left -= bollx;
-
-            platta2.Top += speed;
-
-            if (PlayerScore < 5)
+            if (game == true)
             {
-                if (platta2.Top < 0 || platta2.Top > 455)
+                Spelare.Text = "" + PlayerScore;
+                Motståndare.Text = "" + EnemyScore;
+
+                boll.Top -= bolly;
+                boll.Left -= bollx;
+
+                platta2.Top += speed;
+
+                if (PlayerScore < 5)
                 {
-                    speed = -speed;
+                    if (platta2.Top < 0 || platta2.Top > 455)
+                    {
+                        speed = -speed;
+                    }
                 }
-            }
-            else
-            {
-                platta2.Top = boll.Top + 30;
-            }
+                else
+                {
+                    platta2.Top = boll.Top + 30;
+                }
 
-            if (boll.Left < 0)
-            {
-                boll.Left = 434;
-                bollx = -bollx;
-                bollx -= 2;
-                EnemyScore++;
-            }
+                if (boll.Left < 0)
+                {
+                    boll.Left = 434;
+                    bollx = -bollx;
+                    bollx -= 2;
+                    EnemyScore++;
+                }
 
-            if (boll.Left + boll.Width > ClientSize.Width)
-            {
-                boll.Left = 434;
-                bollx = -bollx;
-                bollx += 2;
-                PlayerScore++;
-            }
+                if (boll.Left + boll.Width > ClientSize.Width)
+                {
+                    boll.Left = 434;
+                    bollx = -bollx;
+                    bollx += 2;
+                    PlayerScore++;
+                }
 
-            if (boll.Top < 0 || boll.Top + boll.Height > ClientSize.Height)
-            {
-                bolly = -bolly;
-            }
+                if (boll.Top < 0 || boll.Top + boll.Height > ClientSize.Height)
+                {
+                    bolly = -bolly;
+                }
 
-            if (boll.Bounds.IntersectsWith(platta.Bounds) || boll.Bounds.IntersectsWith(platta2.Bounds))
-            {
-                bollx = -bollx;
-            }
+                if (boll.Bounds.IntersectsWith(platta.Bounds) || boll.Bounds.IntersectsWith(platta2.Bounds))
+                {
+                    bollx = -bollx;
+                }
 
-            if (goup == true && platta.Top > 0)
-            {
-                platta.Top -= 8;
-            }
+                if (goup == true && platta.Top > 0)
+                {
+                    platta.Top -= 8;
 
-            if (godown == true && platta.Top < 455)
-            {
-                platta.Top += 8;
-            }
+                }
 
-            if (PlayerScore == 10)
-            {
-                pongtimer.Stop();
-                t.Stop();
-                MessageBox.Show("You win this game");
+                if (godown == true && platta.Top < 455)
+                {
+                    platta.Top += 8;
+                }
+
+                if (PlayerScore > 10)
+                {
+                    pongtimer.Stop();
+                    t.Stop();
+                    youWin.Visible = true;
+                    //MessageBox.Show("You win this game");
+                }
             }
             if (EnemyScore == 10)
             {
@@ -119,7 +133,6 @@ namespace agiltpong
                 MessageBox.Show("You lose this game");
             }
         }
-
         private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
             { 
             Invoke(new Action(() =>
