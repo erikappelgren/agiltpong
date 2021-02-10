@@ -47,14 +47,36 @@ namespace agiltpong
 
         void keyisdown(object sender, KeyEventArgs e)
         {
-            int x = platta.Location.X;
-            int y = platta.Location.Y;
+            //int x = platta.Location.X;
+            //int y = platta.Location.Y;
 
 
-            if (e.KeyCode == Keys.Up) y -= 20;
-            if (e.KeyCode == Keys.Down) y += 20;
+            //if (e.KeyCode == Keys.Up) y -= 20;
+            //if (e.KeyCode == Keys.Down) y += 20;
 
-            platta.Location = new Point(x, y);
+            //platta.Location = new Point(x, y);
+            if (e.KeyCode == Keys.Up)
+            {
+                goup = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                godown = true;
+            }
+
+        }
+
+        private void keyisup(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                goup = false;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                godown = false;
+            }
+
         }
 
         private void timerTick(object sender, EventArgs e)
