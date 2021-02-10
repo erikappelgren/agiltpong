@@ -17,7 +17,10 @@ namespace agiltpong
         int bolly = 8;
         int EnemyScore = 0;
         int PlayerScore = 0;
+        bool goup = false;
+        bool godown = false;
         bool game = false;
+
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Space)
@@ -38,7 +41,7 @@ namespace agiltpong
         private void Form1_Load(object sender, EventArgs e)
         {
             t = new System.Timers.Timer();
-            t.Interval = 10;//1s
+            t.Interval = 10;
             t.Elapsed += OnTimeEvent;
         }
 
@@ -57,14 +60,6 @@ namespace agiltpong
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
-            //int x = platta.Location.X;
-            //int y = platta.Location.Y;
-
-
-            //if (e.KeyCode == Keys.Up) y -= 20;
-            //if (e.KeyCode == Keys.Down) y += 20;
-
-            //platta.Location = new Point(x, y);
             if (e.KeyCode == Keys.Up)
             {
                 goup = true;
@@ -138,6 +133,15 @@ namespace agiltpong
                     pongtimer.Stop();
                     t.Stop();
                     youLose.Visible = true;
+                }
+
+                if (goup == true && platta.Top > 0)
+                {
+                    platta.Top -= 8;
+                }
+                if (godown == true && platta.Top < 455)
+                {
+                    platta.Top += 8;
                 }
 
                 npc_move(bolly, bollx);    // Call the move function for the npc with the ballposition
