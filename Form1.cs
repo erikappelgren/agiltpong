@@ -14,7 +14,7 @@ namespace agiltpong
     {
 
         int bollx = 5;
-        int bolly = 10;
+        int bolly = 8;
         int EnemyScore = 0;
         int PlayerScore = 0;
         bool game = false;
