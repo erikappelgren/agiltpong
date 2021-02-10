@@ -14,12 +14,9 @@ namespace agiltpong
     {
 
         int bollx = 5;
-        int bolly = 5;
+        int bolly = 8;
         int EnemyScore = 0;
         int PlayerScore = 0;
-        int speed = 5;
-        bool goup;
-        bool godown;
         bool game = false;
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -37,15 +34,28 @@ namespace agiltpong
         {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             t = new System.Timers.Timer();
             t.Interval = 10;//1s
             t.Elapsed += OnTimeEvent;
-            //t.Start();
         }
 
-        void keyisdown(object sender, KeyEventArgs e)
+        private void npc_move(int bolly, int bollx)
+        {
+            if (bolly > 0 && ((platta2.Top + platta.Size.Width) >= boll.Top))
+            {
+                platta2.Top -= Math.Abs(bollx / 2 - (bollx / 4));
+            }
+            if (bolly < 0 && ((platta2.Top + platta.Size.Width) < boll.Top))
+            {
+                platta2.Top += Math.Abs(bollx / 2 - (bollx / 4));
+            }
+
+        }
+
+        private void keyisdown(object sender, KeyEventArgs e)
         {
             //int x = platta.Location.X;
             //int y = platta.Location.Y;
@@ -90,20 +100,6 @@ namespace agiltpong
                 boll.Top -= bolly;
                 boll.Left -= bollx;
 
-                platta2.Top += speed;
-
-                if (PlayerScore < 5)
-                {
-                    if (platta2.Top < 0 || platta2.Top > 455)
-                    {
-                        speed = -speed;
-                    }
-                }
-                else
-                {
-                    platta2.Top = boll.Top + 30;
-                }
-
                 if (boll.Left < 0)
                 {
                     boll.Left = 434;
@@ -130,23 +126,11 @@ namespace agiltpong
                     bollx = -bollx;
                 }
 
-                if (goup == true && platta.Top > 0)
-                {
-                    platta.Top -= 8;
-
-                }
-
-                if (godown == true && platta.Top < 455)
-                {
-                    platta.Top += 8;
-                }
-
                 if (PlayerScore > 10)
                 {
                     pongtimer.Stop();
                     t.Stop();
                     youWin.Visible = true;
-                    //MessageBox.Show("You win this game");
                 }
 
                 if (EnemyScore == 10)
@@ -154,8 +138,9 @@ namespace agiltpong
                     pongtimer.Stop();
                     t.Stop();
                     youLose.Visible = true;
-                    //MessageBox.Show("You lose this game");
                 }
+
+                npc_move(bolly, bollx);    // Call the move function for the npc with the ballposition
             }
         }
         private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
