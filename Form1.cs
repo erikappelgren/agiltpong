@@ -42,7 +42,7 @@ namespace agiltpong
             t = new System.Timers.Timer();
             t.Interval = 10;//1s
             t.Elapsed += OnTimeEvent;
-            t.Start();
+            //t.Start();
         }
 
         void keyisdown(object sender, KeyEventArgs e)
@@ -63,6 +63,7 @@ namespace agiltpong
             {
                 Spelare.Text = "" + PlayerScore;
                 Motståndare.Text = "" + EnemyScore;
+                t.Start();
 
                 boll.Top -= bolly;
                 boll.Left -= bollx;
@@ -125,12 +126,14 @@ namespace agiltpong
                     youWin.Visible = true;
                     //MessageBox.Show("You win this game");
                 }
-            }
-            if (EnemyScore == 10)
-            {
-                pongtimer.Stop();
-                t.Stop();
-                MessageBox.Show("You lose this game");
+
+                if (EnemyScore == 10)
+                {
+                    pongtimer.Stop();
+                    t.Stop();
+                    youLose.Visible = true;
+                    //MessageBox.Show("You lose this game");
+                }
             }
         }
         private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e) 
